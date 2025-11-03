@@ -89,8 +89,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Unix11
       MYSQL_DATABASE: students
-      MYSQL_USER: students
-      MYSQL_PASSWORD: Unix11
+      MYSQL_USER: devopsdemo
+      MYSQL_PASSWORD: Mypassw07d!
     ports:
       - "3306:3306"
     volumes:
