@@ -25,8 +25,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo docker run -d \
     -e MYSQL_ROOT_PASSWORD=Unix11 \
     -e MYSQL_DATABASE=students \
-    -e MYSQL_USER=students \
-    -e MYSQL_PASSWORD=Unix11 \
+    -e MYSQL_USER=devopsdemo \
+    -e MYSQL_PASSWORD=Mypassw07d! \
     -p 3306:3306 \
     -v mysql-data:/var/lib/mysql \
     mysql:8.0
