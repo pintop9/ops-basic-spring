@@ -18,6 +18,8 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./mysql-data:/var/lib/mysql
-    privileged: true
-
+      - mysql-data:/var/lib/mysql
+    #privileged: true
+volumes:
+  mysql-data:
+    driver: local
