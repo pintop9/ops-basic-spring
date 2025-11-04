@@ -1,5 +1,4 @@
 
-version: "3"
 services:
   appserver:
     container_name: server
@@ -19,5 +18,4 @@ services:
       - 3306:3306
     volumes:
       - ./mysql-data:/var/lib/mysql
-    privileged: true
-
+    #privileged: true
