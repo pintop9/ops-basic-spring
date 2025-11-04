@@ -1,6 +1,8 @@
 
 services:
   appserver:
+    depends_on:
+      - mysql
     container_name: server
     hostname: localhost
     image: pintop9/backend
