@@ -50,5 +50,5 @@ jobs:
            cd ./ops-basic-spring
            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
            sed -i "s|image: pintop9/backend:.*|image: pintop9/backend:v1.0.${{ github.run_number }}|g" docker-compose-aws.yml
-           sudo /usr/local/bin/docker compose -f docker-compose-aws.yml down || true
-           sudo /usr/local/bin/docker compose -f docker-compose-aws.yml up -d 
+           docker-compose -f docker-compose-aws.yml down || true
+           docker-compose -f docker-compose-aws.yml up -d 
