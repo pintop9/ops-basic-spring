@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - ec2
+      - master
 
 env:
   APP_VERSION: v1.0.${{ github.run_number }}
@@ -47,8 +47,16 @@ jobs:
           username: ec2-user
           key: ${{ secrets.SSH_KEY }} # store the SSH password as a secret in the repository
           script: |
-           cd ./ops-basic-spring
-           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-           sed -i "s|image: pintop9/backend:.*|image: pintop9/backend:v1.0.${{ github.run_number }}|g" docker-compose-aws.yml
-           docker-compose -f docker-compose-aws.yml down || true
-           docker-compose -f docker-compose-aws.yml up -d 
+            sudo yum update -y
+            sudo yum install -y docker git
+            sudo service docker start
+            sudo usermod -aG docker ec2-user  # allows running docker without sudo
+            DOCKER_COMPOSE_VERSION="v2.77.0"
+            sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+            [ -d "/home/ec2-user/ops-basic-spring/.git" ] && cd /home/ec2-user/ops-basic-spring && git fetch origin && git reset --hard origin/master || git clone https://github.com/pintop9/ops-basic-spring.git /home/ec2-user/ops-basic-spring
+            cd ./ops-basic-spring
+            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+            sed -i "s|image: pintop9/backend:.*|image: pintop9/backend:v1.0.${{ github.run_number }}|g" docker-compose-aws.yml
+            docker-compose -f docker-compose-aws.yml down || true
+            docker-compose -f docker-compose-aws.yml up -d 
