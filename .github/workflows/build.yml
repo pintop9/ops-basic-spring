@@ -51,7 +51,7 @@ jobs:
             sudo yum install -y docker git
             sudo service docker start
             sudo usermod -aG docker ec2-user  # allows running docker without sudo
-            DOCKER_COMPOSE_VERSION="v2.77.0"
+            DOCKER_COMPOSE_VERSION="v2.40.1"
             sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
             sudo chmod +x /usr/local/bin/docker-compose
             [ -d "/home/ec2-user/ops-basic-spring/.git" ] && cd /home/ec2-user/ops-basic-spring && git fetch origin && git reset --hard origin/master || git clone https://github.com/pintop9/ops-basic-spring.git /home/ec2-user/ops-basic-spring
