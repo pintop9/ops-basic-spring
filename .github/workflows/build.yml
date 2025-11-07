@@ -51,5 +51,5 @@ jobs:
            cd ./ops-basic-spring
            pwd
            sed -i "s|image: pintop9/backend:.*|image: pintop9/backend:v1.0.${{ github.run_number }}|g" docker-compose-aws.yml
-           sudo /usr/local/bin/docker-compose -f docker-compose-aws down || true
-           sudo /usr/local/bin/docker-compose -f docker-compose-aws up -d || true
+           sudo /usr/local/bin/docker-compose -f docker-compose-aws.yml down || true
+           sudo /usr/local/bin/docker-compose -f docker-compose-aws.yml up -d || true
