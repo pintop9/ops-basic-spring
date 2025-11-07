@@ -49,5 +49,5 @@ jobs:
           script: |
            cd /home/ec2-user/ops-basic-spring
            sed -i "s|image: pintop9/backend:.*|image: pintop9/backend:v1.0.${{ github.run_number }}|g" docker-compose.yml
-           sudo /usr/local/bin/docker-compose down || true
-           sudo /usr/local/bin/docker-compose up -d || true
+           sudo /usr/local/bin/docker-compose -f docker-compose-aws down || true
+           sudo /usr/local/bin/docker-compose -f docker-compose-aws up -d || true
