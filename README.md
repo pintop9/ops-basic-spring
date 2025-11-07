@@ -1,5 +1,5 @@
 # devops
-Niv Itzhaky<br>
+Idan Pinto<br>
 https://www.linkedin.com/in/nivitzhaky/<br>
 niv.itzhaky@gmail.com<br>
 0525236451<br>

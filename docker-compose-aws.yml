@@ -12,12 +12,20 @@ services:
     container_name: mysql
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: Unix11
+      MYSQL_ROOT_PASSWORD: /run/secrets/db_root_password
       MYSQL_DATABASE: students
       MYSQL_USER: devopsdemo
-      MYSQL_PASSWORD: Mypassw07d!
+      MYSQL_PASSWORD: /run/secrets/db_user_password
     ports:
       - 3306:3306
+    secrets:
+       - root_password
+       - user_password
     volumes:
       - ./mysql-data:/var/lib/mysql
     #privileged: true
+secrets:
+  root_password:
+    file: ./db_root_password.txt
+  user_password:
+    file: ./db_user_password.txt 
